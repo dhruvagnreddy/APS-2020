@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+int construct_array(int *a,int *st,int low,int high,int pos)
+{
+    if(low==high)
+    {
+        st[pos]=a[low];
+        return a[low];
+    }
+    int mid=(low+high)/2;
+    st[pos]=(min(construct_array(a,st,low,mid,2*pos+1),construct_array(a,st,mid+1,high,2*pos+2)));
+    return(st[pos]);
+        
+}
+
+
+int main()
+{
+    int a[]={1,2,3,4};
+    int x=sizeof(a)/sizeof(a[0]);
+    
+    int m=2*(pow(2,int(ceil(log2(x)))))-1;
+    int *st=new int[m];
+    
+    construct_array(a,st,0,x-1,0);
+    
+    for(int i=0;i<m;i++)
+    {
+        printf("%d ",st[i]);
+    }
+    
+    
+    return 0;
+}
