@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        
+        if(s.length()==0)
+            return -1;
+        
+        map<char,int> m;
+        for(int i=0;i<s.length();i++) {
+            if(m.count(s[i])) {
+                m[s[i]]=-1;
+            } else {
+                m[s[i]]=i;
+            }
+        }
+        
+        int min=INT_MAX;
+        int flag=0;
+        for(auto i=m.begin();i!=m.end();i++) {
+            if(i->second<min and i->second!=-1) {
+                flag=1;
+                min=i->second;
+            }
+        }
+        
+        /*for(auto i=m.begin();i!=m.end();i++) {
+            cout<<i->first<<" "<<i->second<<endl;
+        }*/
+        
+        if(flag==1)
+            return min;
+        else 
+            return -1;
+        
+    }
+};
