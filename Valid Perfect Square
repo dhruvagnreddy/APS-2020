@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool isPerfectSquare(int num) {
+        
+        long i=1;
+        while(true) {
+            if(i*i>num) {
+                return false;
+                break;
+            }
+            if(i*i<num) {
+                i++;
+            } else {
+                return true;
+            }
+               
+        }
+        
+    }
+};
